@@ -1,10 +1,3 @@
----
-title: "PA1_template.Rmd"
-author: "DanielG"
-date: "June 11, 2015"
-output: html_document
----
-
 # Reproducible Research: Assigment 1
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
