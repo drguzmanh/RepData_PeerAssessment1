@@ -12,6 +12,8 @@ When you click the **Knit** button a document will be generated that includes bo
 ## Loading data into R 
 
 ```r
+library(knitr)
+library(lattice)
 dat <-  read.csv("activity.csv")
 ```
 
@@ -113,17 +115,15 @@ datimp$steps2 <- ifelse(is.na(datimp$steps)==TRUE, datimp$Avg_steps, datimp$step
 
 
 ```r
-aggdate_imp <- aggregate(datimp$steps2, by=list(datimp$date), FUN = sum)
-hist(aggdate_imp, main="Histogram: Total Number of Steps by Day", xlab="Steps", 
+aggimp <- aggregate(datimp$steps2, by=list(datimp$date), FUN=sum)
+hist(aggimp$x, main="Histogram: Total Number of Steps by Day", xlab="Steps", 
      sub="(Missing values imputed)")
 ```
 
-```
-## Error in hist.default(aggdate_imp, main = "Histogram: Total Number of Steps by Day", : 'x' must be numeric
-```
+![plot of chunk unnamed-chunk-10](figure/unnamed-chunk-10-1.png) 
 
 ```r
-mean(aggdate_imp$x)
+mean(aggimp$x)
 ```
 
 ```
@@ -131,7 +131,7 @@ mean(aggdate_imp$x)
 ```
 
 ```r
-median(aggdate_imp$x)
+median(aggimp$x)
 ```
 
 ```
@@ -142,7 +142,7 @@ Because I used the average to imput missing values the mean does not change. On 
 
 ## Are there differences in activity patterns between weekdays and weekends?
 
-- Create a new factor variable in the dataset with two levels ‚Äì ‚Äúweekday‚Äù and ‚Äúweekend‚Äù indicating whether a given date is a weekday or weekend day.
+- Create a new factor variable in the dataset with two levels – “weekday” and “weekend” indicating whether a given date is a weekday or weekend day.
 
 
 ```r
